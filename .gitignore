@@ -7,3 +7,4 @@ artifacts/
 *.db-shm
 *.db-wal
 .idea
+*.sln.DotSettings.user
