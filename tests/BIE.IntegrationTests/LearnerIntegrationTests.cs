@@ -17,6 +17,10 @@ public class LearnerIntegrationTests
         var response = await client.PostAsJsonAsync("/api/cases", entry);
         var records = await client.GetFromJsonAsync<List<Case>>("/api/cases");
         // TODO: HTTP-Status, gespeicherte Werte und Entscheidung prüfen.
-        Assert.Fail("TODO: Assertions gemäss Arbeitsauftrag ergänzen.");
+        Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        Assert.IsNotNull(records);
+        Assert.AreEqual(1, records.Count);
+        Assert.IsTrue(records.First().Id > 0);
+        Assert.AreEqual("approved", records.First().Decision.Status);
     }
 }
